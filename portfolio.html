@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My XP Desktop</title>
+   <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline';
+        style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+        img-src 'self' data: https://img.icons8.com;
+        font-src https://cdnjs.cloudflare.com;
+        connect-src 'self' https://api.github.com;
+        frame-ancestors 'none';
+        base-uri 'self';
+        object-src 'none';
+    ">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+    <div id="desktop">
+        <div class="desktop-icon" id="projects-icon" style="left: 20px; top: 20px;">
+            <i class="fas fa-folder"></i>
+            <p>My Projects</p>
+        </div>
+        <div class="desktop-icon" id="snake-icon" style="left: 20px; top: 110px;">
+            <img src="https://img.icons8.com/color/48/000000/snake.png" alt="Snake Game Icon">
+            <p>Snake Game</p>
+        </div>
+        <a href="index.html" class="desktop-icon" id="back-to-index-icon" style="left: 20px; top: 200px; text-decoration: none; color: white;">
+            <i class="fas fa-arrow-left"></i>
+            <p>Back to Start</p>
+        </a>
+        <div id="projects-window" class="xp-window show" style="width: 550px; height: 400px; left: calc(50% - 275px); top: calc(50% - 200px);">
+            <div class="title-bar">
+                <span><i class="fas fa-folder-open"></i> My GitHub Projects</span>
+                <div class="title-bar-buttons"><span class="close-btn">r</span></div>
+            </div>
+            <div class="window-body">
+                <div id="project-icons">
+                    <div class="project-icon-in-window" data-repo="eudk/password-strength-analyzer"><i class="fab fa-github"></i><p>password strength analyzer </p></div>
+                    <div class="project-icon-in-window" data-repo="eudk/awesome-ai-tools"><i class="fab fa-github"></i><p>AI tools</p></div>
+                    <div class="project-icon-in-window" data-repo="eudk/Interstellar-morse-clock"><i class="fab fa-github"></i><p>Clock project</p></div>
+                   <div class="project-icon-in-window" data-repo="eudk/ArenaMapApp-Backend"><i class="fab fa-github"></i><p>Final CS</p></div>
+                </div>
+                <div id="info-display"><p>Click a project icon to see its details. Many more on my github @eudk</p></div>
+            </div>
+        </div>
+        <div id="snake-game-window" class="xp-window" style="left: calc(50% + 100px); top: calc(50% - 150px);">
+            <div class="title-bar">
+                <span><i class="fas fa-gamepad"></i> Snake Game</span>
+                <div class="title-bar-buttons"><span class="close-btn">r</span></div>
+            </div>
+            <div class="window-body">
+                <canvas id="snake-canvas" width="300" height="300"></canvas>
+                <div id="game-controls">
+                    <p>Score: <span id="snake-score">0</span></p>
+                    <button id="start-snake-btn">Start Game</button>
+                    <p>Use Arrow Keys!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/portfolio.js" defer></script>
+</body>
+</html>

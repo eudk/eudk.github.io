@@ -1,0 +1,21 @@
+Node.js
+
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+Environment variables
+
+.env
+.env.local
+IDE and OS files
+
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.user
+Build output
+
+dist/
+build/

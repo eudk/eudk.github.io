@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evgeniy G | IT Security Portfolio</title>
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self';
+  style-src 'self' https://cdnjs.cloudflare.com;
+  img-src 'self' data:;
+  font-src https://cdnjs.cloudflare.com;
+  connect-src 'self';
+  form-action https://formspree.io;
+  frame-ancestors 'none';
+  base-uri 'self';
+  object-src 'none';
+  upgrade-insecure-requests;
+">
+
+    <meta name="description" content="Portfolio for Evgeniy, an IT Security student specializing in GRC">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    <img src="assets/img/img.png" alt="eudk" class="profile-img">
+    <main class="content">
+        <h1>Evgeniy Gordienko</h1>
+        
+        <p id="bio-text"><span id="typewriter-text"></span><span id="typewriter-cursor">&nbsp;</span></p>
+        
+        <div class="action-buttons">
+            <a href="https://github.com/eudk" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://linkedin.com/in/eudk" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="portfolio.html" id="projects-link"><i class="fas fa-briefcase"></i> Projects</a>
+            <button id="open-contact-modal"><i class="fas fa-envelope"></i> Contact Me</button>
+        </div>
+    </main>
+    
+    <div class="modal-overlay" id="contact-modal-overlay" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <span class="close-btn" id="close-contact-modal">&times;</span>
+            <form id="contact-form" class="contact-form" action="https://formspree.io/f/xqayznjr" method="POST">
+                <h2>Contact Me</h2>
+                <p class="modal-subtitle">I'm actively seeking opportunities in IT. For inquiries about my work or potential roles, please feel free to reach out here or through LinkedIn.</p>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div class="form-group-consent">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">I consent to my data being handled as described in the <a href="./privacy.html" target="_blank" rel="noopener noreferrer">Privacy Notice</a>.</label>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>
