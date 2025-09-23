@@ -56,3 +56,23 @@ h1 { font-size: 3.5rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -
     .action-buttons a, .action-buttons button { width: 100%; max-width: 300px; justify-content: center; }
     .modal-content { padding: 30px 25px; }
 }
+
+/* --- Footer Styling --- */
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+footer small {
+    font-size: 0.8rem;
+    color: #888;
+}
+footer a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+footer a:hover {
+    color: #007aff;
+}
