@@ -56,9 +56,13 @@ h1 { font-size: 3.5rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -
     .action-buttons a, .action-buttons button { width: 100%; max-width: 300px; justify-content: center; }
     .modal-content { padding: 30px 25px; }
 
-       .action-buttons a, .action-buttons button { 
-        width: 100%; max-width: 300px; justify-content: center; 
-        margin-left: auto; margin-right: auto;   }
+
+    
+.action-buttons a, .action-buttons button {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+}
 }
 
 /* --- Footer Styling --- */
