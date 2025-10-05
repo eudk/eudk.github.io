@@ -57,11 +57,17 @@ h1 { font-size: 3.5rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -
     .modal-content { padding: 30px 25px; }
 
 
-    
+.action-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%; 
+}
+
 .action-buttons a, .action-buttons button {
     width: 100%;
     max-width: 300px;
     justify-content: center;
+    box-sizing: border-box; 
 }
 }
 
