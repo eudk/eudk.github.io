@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub overview</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png">
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://gc.zgo.at;
+    style-src 'self' https://cdnjs.cloudflare.com;
+    img-src 'self' data: https://github-readme-stats-fast.vercel.app;
+    font-src https://cdnjs.cloudflare.com;
+    connect-src 'self' https://eudk.goatcounter.com https://gc.zgo.at;
+    frame-ancestors 'none';
+    base-uri 'self';
+    object-src 'none';
+    upgrade-insecure-requests;
+  ">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/about.css" />
+
+  <script data-goatcounter="https://eudk.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+</head>
+
+<body class="about-page">
+  <canvas id="matrix-canvas"></canvas>
+
+  <main class="content about-content" aria-label="GitHub overview">
+    <section class="about-hero" aria-label="Overview">
+      <div class="about-title">
+        <h1>GitHub overview</h1>
+        <p>Snapshot of activity, languages, and tooling.</p>
+      </div>
+    </section>
+
+    <section class="about-grid" aria-label="GitHub stats">
+      <div class="about-card about-stat">
+        <img
+          src="https://github-readme-stats-fast.vercel.app/api?username=eudk&show_icons=true&theme=radical&hide_border=true"
+          alt="GitHub profile statistics"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="about-card about-stat">
+        <img
+          src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=eudk&layout=compact&theme=radical&hide_border=true&langs_count=8"
+          alt="Most used languages"
+          loading="lazy"
+        />
+      </div>
+    </section>
+
+    <section class="about-bottom" aria-label="About and skills">
+      <div class="about-card about-about">
+        <h2>About</h2>
+        <p>
+          Experience across IT security fundamentals, governance/risk/compliance, and practical automation.
+          I build small tools, document workflows, and keep things privacy-first.
+        </p>
+      </div>
+
+      <div class="about-card about-skills">
+        <h2>Core skills &amp; tools</h2>
+
+        <div class="skill-grid" role="list">
+          <div class="skill-item" role="listitem">
+            <div class="skill-title"><i class="fa-solid fa-code"></i> Programming</div>
+            <div class="skill-text">C#, Python, JavaScript, HTML, CSS, SQL</div>
+          </div>
+
+          <div class="skill-item" role="listitem">
+            <div class="skill-title"><i class="fa-solid fa-layer-group"></i> Frontend / UI</div>
+            <div class="skill-text">Vanilla JS, React basics, Tailwind basics</div>
+          </div>
+
+          <div class="skill-item" role="listitem">
+            <div class="skill-title"><i class="fa-solid fa-shield-halved"></i> Security tooling</div>
+            <div class="skill-text">Kali, Burp Suite, OWASP ZAP, Nmap, Wireshark, Packet Tracer</div>
+          </div>
+
+          <div class="skill-item" role="listitem">
+            <div class="skill-title"><i class="fa-solid fa-box"></i> DevOps &amp; containers</div>
+            <div class="skill-text">Docker, GitHub Actions, CI/CD basics</div>
+          </div>
+
+          <div class="skill-item" role="listitem">
+            <div class="skill-title"><i class="fa-solid fa-screwdriver-wrench"></i> Other</div>
+            <div class="skill-text">VS Code, Git, Terraform (basic)</div>
+          </div>
+        </div>
+
+        <div class="tools-section" aria-label="Tools I’ve worked with">
+          <h3>Tools I’ve worked with</h3>
+          <div class="tool-chips" aria-label="tool chips">
+            <span class="chip"><i class="fa-brands fa-github"></i> GitHub</span>
+            <span class="chip"><i class="fa-brands fa-microsoft"></i> Azure</span>
+            <span class="chip"><i class="fa-brands fa-docker"></i> Docker</span>
+            <span class="chip"><i class="fa-solid fa-shield-halved"></i> Security</span>
+            <span class="chip"><i class="fa-solid fa-code"></i> Automation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="about-footer">
+    <small>
+      <a href="../privacy.html" class="footer-link">
+        Privacy <a class="status-check" href="https://status.eudk.dev/" target="_blank" rel="noopener noreferrer" aria-label="Open status page">
+          <i class="fa-solid fa-circle-check"></i>
+        </a>
+      </a>
+      <span> | </span>
+      <a href="/" class="footer-link">Back</a>
+    </small>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+  <script src="../js/about.js" defer></script>
+</body>
+</html>

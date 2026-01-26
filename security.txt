@@ -1,0 +1,13 @@
+Contact: https://eudk.dev/#contact
+Contact: https://eudk.dev/privacy.html
+
+Preferred-Languages: en, da
+Canonical: https://eudk.dev/.well-known/security.txt
+
+Scope: https://eudk.dev
+
+Out of Scope:
+Vulnerabilities in third-party services, platforms, or infrastructure 
+used by this site are out of scope and should be reported to the respective providers.
+
+Disclosure: Responsible disclosure is appreciated.

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 • Not Found</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png">
+
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    font-src 'self';
+    connect-src 'self';
+    frame-ancestors 'none';
+    base-uri 'self';
+    object-src 'none';
+    upgrade-insecure-requests;
+  ">
+
+  <style>
+    :root {
+      --bg: #f8f8fa;
+      --text: #1d1d1f;
+      --muted: #555;
+      --glass: rgba(255, 255, 255, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.42);
+      --shadow: rgba(0,0,0,0.12);
+
+      /* Loader */
+      --pillars: #bfc5cc;      
+      --accent: #de3500;
+
+      /* Button (white) */
+      --btn-bg: rgba(255,255,255,0.86);
+      --btn-border: rgba(0,0,0,0.12);
+      --btn-text: #333;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    #matrix-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 14px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      width: min(680px, 100%);
+      padding: 30px 26px 28px;
+      text-align: center;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 26px;
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+      box-shadow: 0 18px 55px var(--shadow);
+    }
+
+    .loader-wrap{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 18px;
+    }
+
+    .loader {
+      position: relative;
+      width: 75px;
+      height: 100px;
+      background-repeat: no-repeat;
+      background-image:
+        linear-gradient(var(--pillars) 50px, transparent 0),
+        linear-gradient(var(--pillars) 50px, transparent 0),
+        linear-gradient(var(--pillars) 50px, transparent 0),
+        linear-gradient(var(--pillars) 50px, transparent 0),
+        linear-gradient(var(--pillars) 50px, transparent 0);
+      background-size: 8px 100%;
+      background-position: 0px 90px, 15px 78px, 30px 66px, 45px 58px, 60px 50px;
+      animation: pillerPushUp 4s linear infinite;
+
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+    }
+    .loader:after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: ballStepUp 4s linear infinite;
+    }
+
+    @keyframes pillerPushUp {
+      0% , 40% , 100% {
+        background-position: 0px 90px, 15px 78px, 30px 66px, 45px 58px, 60px 50px
+      }
+      50% ,  90% {
+        background-position: 0px 50px, 15px 58px, 30px 66px, 45px 78px, 60px 90px
+      }
+    }
+
+    @keyframes ballStepUp {
+      0% {transform: translate(0, 0)}
+      5% {transform: translate(8px, -14px)}
+      10% {transform: translate(15px, -10px)}
+      17% {transform: translate(23px, -24px)}
+      20% {transform: translate(30px, -20px)}
+      27% {transform: translate(38px, -34px)}
+      30% {transform: translate(45px, -30px)}
+      37% {transform: translate(53px, -44px)}
+      40% {transform: translate(60px, -40px)}
+      50% {transform: translate(60px, 0)}
+      57% {transform: translate(53px, -14px)}
+      60% {transform: translate(45px, -10px)}
+      67% {transform: translate(37px, -24px)}
+      70% {transform: translate(30px, -20px)}
+      77% {transform: translate(22px, -34px)}
+      80% {transform: translate(15px, -30px)}
+      87% {transform: translate(7px, -44px)}
+      90% {transform: translate(0, -40px)}
+      100% {transform: translate(0, 0);}
+    }
+
+    h1 {
+      margin: 6px 0 10px;
+      font-size: 2.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .path {
+      margin: 8px 0 22px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9rem;
+      color: #666;
+      word-break: break-all;
+    }
+
+    /* White button (like your site buttons) */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      color: var(--btn-text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0,0,0,0.18);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+    }
+
+    @media (max-width: 520px) {
+      h1 { font-size: 1.85rem; }
+      .card { padding: 22px 16px; }
+      .loader-wrap { margin-bottom: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <main class="card" aria-label="404 page">
+      <div class="loader-wrap">
+        <span class="loader" aria-hidden="true"></span>
+      </div>
+
+      <h1>404</h1>
+      <p class="subtitle">
+        This page doesn’t exist or the link is no longer valid.
+      </p>
+
+      <div class="path" id="requested-path"></div>
+
+      <a class="btn" href="/">Return to main page</a>
+    </main>
+  </div>
+
+  <script>
+    const el = document.getElementById('requested-path');
+    const path = window.location.pathname + window.location.search + window.location.hash;
+    el.textContent = path ? `Requested: ${path}` : '';
+
+    (function () {
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+
+      const fontSize = 14;
+      let columns = Math.floor(canvas.width / fontSize);
+      let drops = Array(columns).fill(1);
+
+      function draw() {
+        ctx.fillStyle = 'rgba(248,248,250,0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#e8e8ed';
+        ctx.font = fontSize + 'px Arial';
+
+        for (let i = 0; i < drops.length; i++) {
+          const char = Math.random() > 0.5 ? '0' : '1';
+          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.99) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setInterval(draw, 60);
+      }
+
+      window.addEventListener('resize', () => {
+        resize();
+        columns = Math.floor(canvas.width / fontSize);
+        drops = Array(columns).fill(1);
+      });
+    })();
+  </script>
+</body>
+</html>

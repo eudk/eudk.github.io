@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /chat.html
+
+Sitemap: https://eudk.dev/sitemap.xml

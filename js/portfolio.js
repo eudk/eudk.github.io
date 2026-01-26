@@ -28,6 +28,11 @@ function makeDraggable(element, handle) {
 document.querySelectorAll('.xp-window').forEach(win => makeDraggable(win, win.querySelector('.title-bar')));
 document.querySelectorAll('.desktop-icon').forEach(icon => makeDraggable(icon));
 document.getElementById('projects-icon').addEventListener('dblclick', () => document.getElementById('projects-window').classList.add('show'));
+document.getElementById('about-icon')
+  .addEventListener('dblclick', () => {
+    window.location.href = '/about.html';
+  });
+
 document.getElementById('snake-icon').addEventListener('dblclick', () => document.getElementById('snake-game-window').classList.add('show'));
 document.querySelectorAll('.close-btn').forEach(btn => {
     btn.addEventListener('click', e => {

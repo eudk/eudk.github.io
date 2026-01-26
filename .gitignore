@@ -1,21 +1,19 @@
-Node.js
-
+# Node / tooling (if you keep Node files at all)
 node_modules/
 npm-debug.log
 yarn-error.log
-package-lock.json
-Environment variables
 
+# Env files
 .env
 .env.local
-IDE and OS files
 
+# IDE / OS
 .vscode/
 .idea/
 .DS_Store
 *.suo
 *.user
-Build output
 
+# Build output
 dist/
 build/

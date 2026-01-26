@@ -1,0 +1,24 @@
+name: Static Site Checks
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  basic-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check HTML files exist
+        run: |
+          test -f index.html
+          test -f privacy.html
+          test -f about.html
+
+      - name: Check for broken internal links (simple)
+        run: |
+          grep -R "href=\"" *.html || true

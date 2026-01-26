@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo Chat</title>
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'self';
+    img-src 'self' data:;
+    connect-src 'self';
+    frame-ancestors 'none';
+    base-uri 'self';
+    object-src 'none';
+    upgrade-insecure-requests;
+  ">
+
+  <link rel="icon" type="image/png" href="/assets/img/img.png">
+  <link rel="stylesheet" href="css/chat.css" />
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <main class="wrap" aria-label="Demo chat page">
+    <section class="card" role="region" aria-label="Chat demo">
+      <header class="header">
+        <div class="title">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <h1>Demo Assistant</h1>
+            <p>Scripted UI — not a real AI. Suggestions below work best.</p>
+          </div>
+        </div>
+
+        <nav class="header-links" aria-label="Quick links">
+          <a class="link" href="/" title="Back to main site">Back</a>
+          <a class="link" href="/#contact" title="Contact form">Contact</a>
+          <a class="link" href="https://status.eudk.dev/" target="_blank" rel="noopener noreferrer" title="Status page">
+            Status
+          </a>
+        </nav>
+      </header>
+
+      <div class="suggestions" aria-label="Suggested questions">
+        <button class="chip" data-q="What have you worked on recently?">What have you worked on recently?</button>
+        <button class="chip" data-q="What’s your focus in IT security?">What’s your focus in IT security?</button>
+        <button class="chip" data-q="What tools do you use?">What tools do you use?</button>
+        <button class="chip" data-q="Do you have a GitHub overview?">Do you have a GitHub overview?</button>
+        <button class="chip" data-q="How do you think about privacy on your site?">How do you think about privacy on your site?</button>
+        <button class="chip" data-q="What kind of projects do you build?">What kind of projects do you build?</button>
+        <button class="chip" data-q="What’s your approach to learning security?">What’s your approach to learning security?</button>
+        <button class="chip" data-q="What’s your background before IT security?">What’s your background before IT security?</button>
+        <button class="chip" data-q="How can I contact you?">How can I contact you?</button>
+        <button class="chip" data-q="Where can I see site status?">Where can I see site status?</button>
+      </div>
+
+      <div id="chat" class="chat" aria-live="polite" aria-label="Chat messages">
+        <div class="msg assistant">
+          <div class="bubble">
+            <div class="meta">Demo Assistant</div>
+            <div class="text">
+              Click a suggested question to see the intended experience. If you type your own question,
+              you’ll get a “demo in progress” response with contact links.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="composer" aria-label="Message composer">
+        <form id="chat-form" class="form" autocomplete="off">
+          <input
+            id="chat-input"
+            class="input"
+            type="text"
+            inputmode="text"
+            placeholder="Type a question…"
+            aria-label="Type a question"
+          />
+          <button class="send" type="submit" aria-label="Send">Send</button>
+        </form>
+
+        <div class="hint">
+          Contact: <a href="/#contact">form</a> ·
+          <a href="https://linkedin.com/in/eudk" target="_blank" rel="noopener noreferrer">LinkedIn</a> ·
+          <a href="https://status.eudk.dev/" target="_blank" rel="noopener noreferrer">Status</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script src="js/chat.js" defer></script>
+</body>
+</html>

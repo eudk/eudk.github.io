@@ -1,41 +1,88 @@
+🇩🇰 **Dansk version:** [Læs README på dansk](README.da.md)
 
+---
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Feudk.github.io&label=live%20demo)](https://eudk.github.io)
-[![GitHub Pages](https://img.shields.io/badge/deployed%20on-GitHub%20Pages-blue?logo=github)](https://eudk.github.io)
-[![Made with](https://img.shields.io/badge/made%20with-HTML%2FCSS%2FJS-orange?logo=javascript)](#)
-[![Portfolio](https://img.shields.io/badge/type-portfolio-success)](#)
+# Evgeniy Gordienko — Personal Portfolio
+
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Feudk.dev&label=live%20site)](https://eudk.dev)
+[![Status](https://status.eudk.dev/badge)](https://status.eudk.dev)
+[![Deployed on GitHub Pages](https://img.shields.io/badge/deployed%20on-GitHub%20Pages-black?logo=github)](https://pages.github.com/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/eudk/eudk.github.io?logo=git)](#)
-[![Repo Size](https://img.shields.io/github/repo-size/eudk/eudk.github.io)](#)
-[![Stars](https://img.shields.io/github/stars/eudk/eudk.github.io?style=social)](#)
-[![Forks](https://img.shields.io/github/forks/eudk/eudk.github.io?style=social)](#)
-[![Code Quality](https://img.shields.io/badge/code%20style-standard-yellow?logo=javascript)](#)
 
+This repository contains the source code for my personal portfolio website.
 
-# Personal Portfolio Website
+The site presents my background in IT and security, selected projects, and ongoing technical work.  
+It also serves as a space for experimenting with tooling, integrations, and operational practices in a controlled and documented way.
 
-This repository contains the source code for my personal portfolio website, built with **HTML**, **CSS**, and **vanilla JavaScript**.
-## ✨ Features
+🔗 **Portfolio:** https://eudk.dev  
+🔒 **Privacy notice:** https://eudk.dev/privacy.html
 
-- **Interactive XP Desktop** – Nostalgic Windows XP–themed portfolio page with draggable windows and icons.  
-- **Dynamic Project Display** – Fetches and displays project information directly from the GitHub API.  
-- **Classic Snake Game** – A fun, playable version of the classic Snake game.  
-- **Secure Contact Form** – Uses [Formspree](https://formspree.io) for secure submissions without exposing personal email addresses.  
-- **GDPR Compliant** – Includes a privacy notice and requires user consent for data handling.  
-- **Fully Responsive** – Optimized for both desktop and mobile devices.
--  Created by @eudk
+---
 
-## 🚀 Deployment
+## About the site
 
-The site is deployed using **GitHub Pages**.  
-🔗 Live version: [https://eudk.github.io](https://eudk.github.io)
+The portfolio is intentionally simple and maintainable.  
+It focuses on clarity, structure, and real-world relevance rather than visual complexity or heavy frameworks.
 
-## 🔧 Setup
+Made by @eudk 
 
-To run this project locally:
+In addition to core portfolio content, the site includes:
+- Small technical experiments
+- Integrations with external services where appropriate
+- Public operational signals such as uptime and status
 
-```bash
-# Clone the repository
-git clone https://github.com/eudk/eudk.github.io.git
+---
 
-# Open index.html in your browser
+## Features
+
+- Multilingual interface (Danish / English)
+- Contact form 
+- Cookie-less analytics
+- Public status and uptime monitoring
+- Clearly documented privacy and security handling
+
+---
+
+## Tooling & integrations
+
+Where external services are used, they are selected to keep the site lightweight and transparent:
+
+- **Hosting:** GitHub Pages  
+- **Analytics:** GoatCounter (no cookies, no profiling)  
+- **Contact form:** Formspree  
+- **Monitoring & status:** Better Stack  
+
+These integrations are optional, documented, and deliberately limited.
+
+---
+
+## Privacy & security
+
+The site does not use cookies or tracking technologies.
+
+A privacy notice is available here:  
+🔒 https://eudk.dev/privacy.html
+
+Responsible security disclosures are supported via:
+
+/.well-known/security.txt
+/security.txt
+
+---
+
+## Status
+
+Live uptime and incident history are publicly available:
+
+🔍 https://status.eudk.dev
+
+---
+
+## License
+
+This project is released under the **MIT License**.  
+Structure and ideas may be reused; personal content may not.
+
+---
+
+*Maintained as a long-term personal project.*
