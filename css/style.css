@@ -356,6 +356,18 @@ footer a:hover { color: #007aff; }
   color: #2aa745;
 }
 
+.online-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 6px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #2aa745;
+  box-shadow: 0 0 6px rgba(42, 167, 69, 0.7);
+  vertical-align: middle;
+}
+
 /* Language toggle wrapper */
 .lang-toggle {
   position: fixed;
