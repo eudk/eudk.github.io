@@ -46,7 +46,7 @@
   background-size: 8px 100%;
   background-position: 0 90px, 15px 78px, 30px 66px, 45px 58px, 60px 50px;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .12));
-  animation: loaderPillars 4s linear infinite;
+  animation: loaderPillars 2.4s ease-in-out infinite;
 }
 
 .page-loader-symbol::after {
@@ -58,7 +58,7 @@
   height: 10px;
   border-radius: 50%;
   background: #de3500;
-  animation: loaderBall 4s linear infinite;
+  animation: loaderBall 2.4s ease-in-out infinite;
 }
 
 .page-loader-text {
@@ -78,30 +78,23 @@
 }
 
 @keyframes loaderPillars {
-  0%, 40%, 100% { background-position: 0 90px, 15px 78px, 30px 66px, 45px 58px, 60px 50px; }
-  50%, 90% { background-position: 0 50px, 15px 58px, 30px 66px, 45px 78px, 60px 90px; }
+  0%, 100% { background-position: 0 90px, 15px 78px, 30px 66px, 45px 58px, 60px 50px; }
+  50% { background-position: 0 86px, 15px 74px, 30px 62px, 45px 54px, 60px 46px; }
 }
 
 @keyframes loaderBall {
   0% { transform: translate(0, 0); }
-  5% { transform: translate(8px, -14px); }
-  10% { transform: translate(15px, -10px); }
-  17% { transform: translate(23px, -24px); }
-  20% { transform: translate(30px, -20px); }
-  27% { transform: translate(38px, -34px); }
-  30% { transform: translate(45px, -30px); }
-  37% { transform: translate(53px, -44px); }
-  40% { transform: translate(60px, -40px); }
-  50% { transform: translate(60px, 0); }
-  57% { transform: translate(53px, -14px); }
-  60% { transform: translate(45px, -10px); }
-  67% { transform: translate(37px, -24px); }
-  70% { transform: translate(30px, -20px); }
-  77% { transform: translate(22px, -34px); }
-  80% { transform: translate(15px, -30px); }
-  87% { transform: translate(7px, -44px); }
-  90% { transform: translate(0, -40px); }
-  100% { transform: translate(0, 0); }
+  12% { transform: translate(8px, -15px); }
+  24% { transform: translate(15px, -12px); }
+  36% { transform: translate(23px, -27px); }
+  48% { transform: translate(30px, -24px); }
+  60% { transform: translate(38px, -39px); }
+  72% { transform: translate(45px, -36px); }
+  84% { transform: translate(53px, -51px); }
+  96% { transform: translate(60px, -48px); opacity: 1; }
+  97% { transform: translate(60px, -48px); opacity: 0; }
+  98% { transform: translate(0, 0); opacity: 0; }
+  100% { transform: translate(0, 0); opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

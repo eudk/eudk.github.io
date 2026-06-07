@@ -18,6 +18,11 @@
   </url>
 
   <url>
+    <loc>https://eudk.dev/donate/</loc>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
     <loc>https://status.eudk.dev/</loc>
     <priority>0.4</priority>
   </url>

@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn_send: 'Send',
 
       footer_privacy: 'Privatliv',
+      footer_donate: 'Dono',
       footer_status: 'Status',
 
       phrases: [
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn_send: 'Send',
 
       footer_privacy: 'Privacy',
+      footer_donate: 'Dono',
       footer_status: 'Status',
 
       phrases: [
