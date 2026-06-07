@@ -4,14 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const isDesktopPointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
   const isDesktop = !isMobileUA && isDesktopPointer;
 
-  // --- Mobile Redirect for Projects Link ---
-  const projectsLink = document.getElementById('projects-link');
-  if (isMobileUA && projectsLink) {
-    projectsLink.href = "https://github.com/eudk";
-    projectsLink.target = "_blank";
-    projectsLink.rel = "noopener noreferrer";
-  }
-
   const i18n = {
     da: {
       btn_github: 'GitHub',
@@ -20,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
       btn_contact: 'Kontakt',
 
       modal_title: 'Kontakt',
-      modal_subtitle: 'Skriv her eller via LinkedIn, for at kontakte mig.',
+      modal_subtitle_prefix: 'Skriv her eller via',
+      modal_subtitle_suffix: ' for at kontakte mig.',
       label_email: 'Din e-mail',
       label_message: 'Besked',
       ph_email: 'navn@eksempel.dk',
@@ -32,17 +25,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btn_send: 'Send',
 
-      footer_about: 'Om',
       footer_privacy: 'Privatliv',
       footer_status: 'Status',
 
       phrases: [
-        "Uddannet datamatiker",
-        "Studerer IT-sikkerhed",
-        "Erfaring med systemer, netværk og programmering.",
-        "Erfaring med praktisk sikkerhedsarbejde og cases.",
-        "Kendskab til governance, risiko og compliance.",
-        "Fokus på virkelige IT-miljøer og drift."
+        "Nyuddannet udvikler",
+        "Datamatiker og PBA i IT-sikkerhed",
+        "Bygger software, værktøjer og eksperimenter",
+        "Interesseret i AI-agenter og sikkerhed",
+        "Fokus på adgangskontrol og governance",
+        "Projekter, GitHub og portfolio"
       ]
     },
     en: {
@@ -52,7 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
       btn_contact: 'Contact',
 
       modal_title: 'Contact',
-      modal_subtitle: 'Reach out here or via LinkedIn to get in touch.',
+      modal_subtitle_prefix: 'Reach out here or via',
+      modal_subtitle_suffix: ' to get in touch.',
       label_email: 'Your email',
       label_message: 'Message',
       ph_email: 'name@example.com',
@@ -64,17 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btn_send: 'Send',
 
-      footer_about: 'About',
       footer_privacy: 'Privacy',
       footer_status: 'Status',
 
       phrases: [
-        "AP Computer Science graduate.",
-        "IT Security student.",
-        "Background in systems, networking, and programming.",
-        "Experience with practical security work and case assignments.",
-        "Exposure to governance, risk, and compliance.",
-        "Focused on real-world IT environments and operations."
+        "Graduate Developer",
+        "Background in Software Development and IT Security",
+        "Building software, tools and experiments",
+        "Interested in AI agents and system design",
+        "Focused on access control and security architecture",
+        "Projects, GitHub and portfolio"
       ]
     }
   };
@@ -111,9 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return dict.phrases;
   }
 
-  // --- Typewriter Effect ---
   const typewriterTextElement = document.getElementById('typewriter-text');
-
   let phrases = [];
   let phraseIndex = 0;
   let charIndex = 0;
@@ -131,43 +121,40 @@ document.addEventListener('DOMContentLoaded', () => {
       const lang = langToggle.checked ? 'en' : 'da';
       localStorage.setItem('siteLang', lang);
       phrases = applyLanguage(lang);
-
       phraseIndex = 0;
       charIndex = 0;
       isDeleting = false;
-      if (typewriterTextElement) typewriterTextElement.textContent = "";
+      if (typewriterTextElement) typewriterTextElement.textContent = '';
     });
   }
 
   function typeWriter() {
-    if (!typewriterTextElement) return;
+    if (!typewriterTextElement || phrases.length === 0) return;
 
-    const currentPhrase = phrases[phraseIndex] || "";
-    let typeSpeed = 70;
+    const currentPhrase = phrases[phraseIndex] || '';
+    let typeSpeed = isDeleting ? 45 : 68;
 
     if (isDeleting) {
-      typeSpeed = 55;
-      typewriterTextElement.textContent = currentPhrase.substring(0, Math.max(0, charIndex - 1));
-      charIndex--;
+      charIndex = Math.max(0, charIndex - 1);
     } else {
-      typewriterTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
-      charIndex++;
+      charIndex = Math.min(currentPhrase.length, charIndex + 1);
     }
+
+    typewriterTextElement.textContent = currentPhrase.slice(0, charIndex);
 
     if (!isDeleting && charIndex === currentPhrase.length) {
       isDeleting = true;
-      typeSpeed = 2000;
-    } else if (isDeleting && charIndex <= 0) {
+      typeSpeed = 1800;
+    } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
-      charIndex = 0;
       phraseIndex = (phraseIndex + 1) % phrases.length;
-      typeSpeed = 500;
+      typeSpeed = 420;
     }
 
-    setTimeout(typeWriter, typeSpeed);
+    window.setTimeout(typeWriter, typeSpeed);
   }
 
-  if (typewriterTextElement && phrases.length > 0) typeWriter();
+  typeWriter();
 
   // --- Modal & Form Logic + #contact hash ---
   const openModalBtn = document.getElementById('open-contact-modal');

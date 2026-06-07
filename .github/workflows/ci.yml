@@ -17,7 +17,7 @@ jobs:
         run: |
           test -f index.html
           test -f privacy.html
-          test -f about.html
+          test -f portfolio.html
 
       - name: Check for broken internal links (simple)
         run: |

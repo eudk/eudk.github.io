@@ -137,13 +137,13 @@ h1 {
 
 #typewriter-cursor {
   display: inline-block;
-  background-color: #555;
   width: 2px;
-  animation: blink 1s step-end infinite;
+  background-color: #555;
+  animation: typewriterBlink 1s step-end infinite;
 }
 
-@keyframes blink {
-  from, to { background-color: transparent; }
+@keyframes typewriterBlink {
+  0%, 100% { background-color: transparent; }
   50% { background-color: #555; }
 }
 
@@ -232,6 +232,18 @@ h1 {
   color: #666;
   margin: 0 0 25px;
   line-height: 1.5;
+}
+
+.modal-subtitle a {
+  color: #007aff;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.modal-subtitle a:hover,
+.modal-subtitle a:focus-visible {
+  color: #005ecb;
 }
 
 .close-btn {

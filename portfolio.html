@@ -1,81 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My XP Desktop</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
-
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png">
-
-   <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self';
-        script-src 'self' 'unsafe-inline';
-        style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
-        img-src 'self' data: https://img.icons8.com;
-        font-src https://cdnjs.cloudflare.com;
-        connect-src 'self' https://api.github.com;
-        frame-ancestors 'none';
-        base-uri 'self';
-        object-src 'none';
-    ">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="css/portfolio.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Evgeniy Gordienko</title>
+  <meta name="description" content="Projects by Evgeniy Gordienko">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/portfolio.css">
+  <link rel="stylesheet" href="css/page-loader.css">
 </head>
 <body>
-    <div id="desktop">
-        <div class="desktop-icon" id="projects-icon" style="left: 20px; top: 20px;">
-            <i class="fas fa-folder"></i>
-            <p>My Projects</p>
-        </div>
-        
-        <div class="desktop-icon" id="snake-icon" style="left: 20px; top: 110px;">
-            <img src="https://img.icons8.com/color/48/000000/snake.png" alt="Snake Game Icon">
-            <p>Snake Game</p>
-        </div>
-        <div class="desktop-icon" id="about-icon" style="left: 20px; top: 290px;">
-    <i class="fas fa-folder"></i>
-    <p>About</p>
-</div>
-
-        <a href="index.html" class="desktop-icon" id="back-to-index-icon" style="left: 20px; top: 200px; text-decoration: none; color: white;">
-            <i class="fas fa-arrow-left"></i>
-            <p>Back to Start</p>
-        </a>
-        <div id="projects-window" class="xp-window show" style="width: 550px; height: 400px; left: calc(50% - 275px); top: calc(50% - 200px);">
-            <div class="title-bar">
-                <span><i class="fas fa-folder-open"></i> My GitHub Projects</span>
-                <div class="title-bar-buttons"><span class="close-btn">r</span></div>
-            </div>
-            <div class="window-body">
-                <div id="project-icons">
-                    <div class="project-icon-in-window" data-repo="eudk/password-strength-analyzer"><i class="fab fa-github"></i><p>password strength analyzer </p></div>
-                    <div class="project-icon-in-window" data-repo="eudk/awesome-ai-tools"><i class="fab fa-github"></i><p>AI tools</p></div>
-                    <div class="project-icon-in-window" data-repo="eudk/Interstellar-morse-clock"><i class="fab fa-github"></i><p>Clock project</p></div>
-                   <div class="project-icon-in-window" data-repo="eudk/ArenaMapApp-Backend"><i class="fab fa-github"></i><p>Final CS</p></div>
-                </div>
-                <div id="info-display"><p>Click a project icon to see its details. Many more on my github @eudk</p></div>
-            </div>
-        </div>
-        <div id="snake-game-window" class="xp-window" style="left: calc(50% + 100px); top: calc(50% - 150px);">
-            <div class="title-bar">
-                <span><i class="fas fa-gamepad"></i> Snake Game</span>
-                <div class="title-bar-buttons"><span class="close-btn">r</span></div>
-            </div>
-            <div class="window-body">
-                <canvas id="snake-canvas" width="300" height="300"></canvas>
-                <div id="game-controls">
-                    <p>Score: <span id="snake-score">0</span></p>
-                    <button id="start-snake-btn">Start Game</button>
-                    <p>Use Arrow Keys!</p>
-                </div>
-            </div>
-        </div>
+  <div class="page-loader" id="page-loader" role="status" aria-live="polite">
+    <span class="page-loader-symbol" aria-hidden="true"></span>
+    <p class="page-loader-text">Loading</p>
+  </div>
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+  <header class="page-header">
+    <div class="header-navigation">
+      <a class="site-name" href="index.html">eudk</a>
+      <a class="header-back" href="index.html">
+        <span aria-hidden="true">←</span>
+        <span data-i18n="back_home">Tilbage til forsiden</span>
+      </a>
     </div>
-    <script src="js/portfolio.js" defer></script>
+
+    <div class="language-toggle" aria-label="Vælg sprog">
+      <button class="language-button is-active" type="button" data-lang="da" aria-pressed="true">DK</button>
+      <span aria-hidden="true">/</span>
+      <button class="language-button" type="button" data-lang="en" aria-pressed="false">ENG</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p class="eyebrow" data-i18n="eyebrow">Portfolio</p>
+      <h1 data-i18n="page_title">Projekter</h1>
+      <p data-i18n="page_intro">Et udvalg af projekter, eksperimenter og arbejde under udvikling.</p>
+    </div>
+
+    <div class="portfolio-links">
+      <a class="github-profile-link" href="https://github.com/eudk" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.69-1.29-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18A10.95 10.95 0 0 1 12 6.13c.98 0 1.95.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.64 1.58.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.07.79 2.16v3.24c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/>
+        </svg>
+        <span>github.com/eudk</span>
+        <span class="github-link-arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="project-grid">
+      <section class="panel" aria-labelledby="all-projects-title">
+        <div class="panel-heading">
+          <h2 id="all-projects-title" data-i18n="all_projects">Udvalgte projekter</h2>
+          <span id="selected-count">00</span>
+        </div>
+
+        <div class="project-list">
+          <button class="project-row" type="button" data-project="eugdatacore">
+            <span>
+              <strong>eugdatacore</strong>
+              <small data-i18n="security_project_label">IT-sikkerhedsprojekt</small>
+            </span>
+            <span class="arrow" aria-hidden="true">+</span>
+          </button>
+
+          <button class="project-row" type="button" data-project="museum">
+            <span>
+              <strong>The Weird AI Test Museum</strong>
+              <small data-i18n="live_project_label">Live projekt</small>
+            </span>
+            <span class="arrow" aria-hidden="true">+</span>
+          </button>
+
+          <button class="project-row" type="button" data-project="naturdanmark">
+            <span>
+              <strong data-i18n="naturdanmark_title">NaturDanmark</strong>
+              <small data-i18n="semester_project_label">3. semesterprojekt</small>
+            </span>
+            <span class="arrow" aria-hidden="true">+</span>
+          </button>
+
+          <button class="project-row" type="button" data-project="arena">
+            <span>
+              <strong data-i18n="arena_title">Arena Map App</strong>
+              <small data-i18n="final_project_label">Afsluttende datamatikerprojekt</small>
+            </span>
+            <span class="arrow" aria-hidden="true">+</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel featured-panel" aria-labelledby="starred-title">
+        <div class="panel-heading">
+          <h2 id="starred-title" data-i18n="top_starred">Flest stjerner</h2>
+          <span id="starred-count">06</span>
+        </div>
+
+        <div id="starred-projects" aria-live="polite" aria-busy="true">
+          <p class="featured-status" data-i18n="loading_projects">Henter projekter...</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="development-section" aria-labelledby="development-title">
+      <div class="development-heading">
+        <div>
+          <p class="eyebrow" data-i18n="development_eyebrow">Aktuelt projekt</p>
+          <h2 id="development-title" data-i18n="under_development">Under udvikling</h2>
+        </div>
+        <div class="development-heading-meta">
+          <span class="development-status" data-i18n="active_development">Aktiv udvikling</span>
+          <span class="development-count" id="development-count">00</span>
+        </div>
+      </div>
+
+      <button class="development-card" type="button" data-project="ev">
+        <span class="development-index"></span>
+        <div class="development-copy">
+          <h3 data-i18n="ev_title">EV Charging Intelligence Map (In Development)</h3>
+          <p data-i18n="ev_short">Intelligent kort til ladestationer, ruteplanlægning og relevant information for elbiler.</p>
+        </div>
+        <span class="development-action" aria-hidden="true">+</span>
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <a href="index.html"><span aria-hidden="true">←</span> <span data-i18n="back_home">Tilbage til forsiden</span></a>
+  </footer>
+
+  <div class="dialog-backdrop" id="project-dialog" hidden>
+    <section class="project-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <button class="dialog-close" type="button" aria-label="Luk">&times;</button>
+      <p class="eyebrow" data-i18n="project_details">Projektdetaljer</p>
+      <h2 id="dialog-title"></h2>
+      <p id="dialog-description"></p>
+      <div class="dialog-metadata" id="dialog-metadata"></div>
+      <div class="dialog-actions" id="dialog-actions"></div>
+      <h3 class="repo-heading" data-i18n="related_repositories">Repositories</h3>
+      <div class="dialog-repositories" id="dialog-repositories"></div>
+      <p class="dialog-note" id="dialog-note"></p>
+    </section>
+  </div>
+
+  <script src="js/page-loader.js" defer></script>
+  <script src="js/portfolio.js" defer></script>
 </body>
 </html>

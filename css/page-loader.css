@@ -1,0 +1,112 @@
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background: #f8f8fa;
+  color: #555;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .28s ease, visibility .28s ease;
+  animation: loaderFailSafe .01s 4s forwards;
+}
+
+.page-loader.is-leaving {
+  opacity: 1;
+  visibility: visible;
+  animation: none;
+}
+
+.page-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  animation: none;
+}
+
+.page-loader-symbol {
+  position: relative;
+  width: 75px;
+  height: 100px;
+  background-image:
+    linear-gradient(#bfc5cc 50px, transparent 0),
+    linear-gradient(#bfc5cc 50px, transparent 0),
+    linear-gradient(#bfc5cc 50px, transparent 0),
+    linear-gradient(#bfc5cc 50px, transparent 0),
+    linear-gradient(#bfc5cc 50px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 8px 100%;
+  background-position: 0 90px, 15px 78px, 30px 66px, 45px 58px, 60px 50px;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .12));
+  animation: loaderPillars 4s linear infinite;
+}
+
+.page-loader-symbol::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #de3500;
+  animation: loaderBall 4s linear infinite;
+}
+
+.page-loader-text {
+  margin: 0;
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+@keyframes loaderFailSafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@keyframes loaderPillars {
+  0%, 40%, 100% { background-position: 0 90px, 15px 78px, 30px 66px, 45px 58px, 60px 50px; }
+  50%, 90% { background-position: 0 50px, 15px 58px, 30px 66px, 45px 78px, 60px 90px; }
+}
+
+@keyframes loaderBall {
+  0% { transform: translate(0, 0); }
+  5% { transform: translate(8px, -14px); }
+  10% { transform: translate(15px, -10px); }
+  17% { transform: translate(23px, -24px); }
+  20% { transform: translate(30px, -20px); }
+  27% { transform: translate(38px, -34px); }
+  30% { transform: translate(45px, -30px); }
+  37% { transform: translate(53px, -44px); }
+  40% { transform: translate(60px, -40px); }
+  50% { transform: translate(60px, 0); }
+  57% { transform: translate(53px, -14px); }
+  60% { transform: translate(45px, -10px); }
+  67% { transform: translate(37px, -24px); }
+  70% { transform: translate(30px, -20px); }
+  77% { transform: translate(22px, -34px); }
+  80% { transform: translate(15px, -30px); }
+  87% { transform: translate(7px, -44px); }
+  90% { transform: translate(0, -40px); }
+  100% { transform: translate(0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader-symbol,
+  .page-loader-symbol::after {
+    animation: none;
+  }
+}
