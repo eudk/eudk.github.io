@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const GITHUB_USER = 'eudk';
-  const STARRED_LIMIT = 6;
-  const CACHE_KEY = 'eudkStarredReposV6';
+  const STARRED_LIMIT = 10;
+  const CACHE_KEY = 'eudkStarredReposV7';
   const CACHE_MAX_AGE = 60 * 60 * 1000;
   const REPO_CACHE_PREFIX = 'eudkRepoMetadataV2:';
 
@@ -398,18 +398,26 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try {
-      const [repoResponse, contributorsResponse, commitsResponse] = await Promise.all([
+      const [repoResult, contributorsResult, commitsResult] = await Promise.allSettled([
         fetch(`https://api.github.com/repos/${GITHUB_USER}/${encodeURIComponent(name)}`, options),
         fetch(`https://api.github.com/repos/${GITHUB_USER}/${encodeURIComponent(name)}/contributors?per_page=1&anon=1`, options),
         fetch(`https://api.github.com/repos/${GITHUB_USER}/${encodeURIComponent(name)}/commits?per_page=1`, options)
       ]);
 
+      if (repoResult.status !== 'fulfilled') throw repoResult.reason;
+      const repoResponse = repoResult.value;
       if (!repoResponse.ok) throw new Error('Repository request failed');
       const repo = await repoResponse.json();
-      const contributors = contributorsResponse.ok ? await contributorsResponse.json() : [];
-      const commits = commitsResponse.ok ? await commitsResponse.json() : [];
-      const contributorLink = contributorsResponse.headers.get('Link') || '';
-      const commitLink = commitsResponse.headers.get('Link') || '';
+      const contributorsResponse = contributorsResult.status === 'fulfilled'
+        ? contributorsResult.value
+        : null;
+      const commitsResponse = commitsResult.status === 'fulfilled'
+        ? commitsResult.value
+        : null;
+      const contributors = contributorsResponse?.ok ? await contributorsResponse.json() : [];
+      const commits = commitsResponse?.ok ? await commitsResponse.json() : [];
+      const contributorLink = contributorsResponse?.headers.get('Link') || '';
+      const commitLink = commitsResponse?.headers.get('Link') || '';
       const lastPageMatch = contributorLink.match(/[?&]page=(\d+)>;\s*rel="last"/);
       const lastCommitPageMatch = commitLink.match(/[?&]page=(\d+)>;\s*rel="last"/);
       const contributorCount = lastPageMatch
