@@ -49,13 +49,26 @@ footer {
 }
 
 .page-header {
+  isolation: isolate;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 0;
+  padding: 24px 0;
+}
+
+.page-header::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
   border-bottom: 1px solid var(--line);
-  background: rgba(248, 248, 250, .78);
-  backdrop-filter: blur(8px);
+  background: rgba(248, 248, 250, .9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: translateX(-50%);
 }
 
 .site-name {
