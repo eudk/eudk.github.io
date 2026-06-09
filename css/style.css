@@ -362,6 +362,18 @@ footer a {
 
 footer a:hover { color: #007aff; }
 
+.footer-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  vertical-align: middle;
+}
+
+.footer-x i {
+  font-size: .95rem;
+}
+
 .footer-status i{
   font-size: 0.9em;
   margin-right: 6px;

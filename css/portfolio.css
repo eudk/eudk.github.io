@@ -388,61 +388,42 @@ h1 {
   overflow: hidden;
   border: 1px solid var(--ink);
   border-radius: 18px;
-  background: var(--soft);
+  background: rgba(255, 255, 255, .94);
   color: var(--ink);
   box-shadow: 0 14px 45px rgba(0, 0, 0, .035);
 }
 
 .development-heading {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 28px 30px;
+  min-height: 76px;
+  padding: 0 25px;
   border-bottom: 1px solid var(--line);
-}
-
-.development-heading .eyebrow {
-  color: var(--muted);
 }
 
 .development-heading h2 {
   margin: 0;
-  font-size: clamp(1.8rem, 4vw, 3.1rem);
-  font-weight: 500;
-  letter-spacing: -.055em;
-}
-
-.development-status {
-  padding: 7px 11px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--page);
-  color: var(--muted);
-  font-size: .68rem;
-  white-space: nowrap;
-}
-
-.development-heading-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
 .development-count {
   color: var(--muted);
-  font-size: .72rem;
+  font-size: .75rem;
   font-variant-numeric: tabular-nums;
 }
 
 .development-card {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) auto;
-  gap: 18px;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  gap: 12px;
   align-items: center;
   width: 100%;
-  min-height: 150px;
-  padding: 28px 30px;
+  min-height: 96px;
+  padding: 14px 25px;
   border: 0;
   background: transparent;
   color: inherit;
@@ -453,8 +434,8 @@ h1 {
 
 .development-card:hover,
 .development-card:focus-visible {
-  padding-inline: 40px 20px;
-  background: var(--page);
+  padding-inline: 37px 13px;
+  background: var(--soft);
   outline: 0;
 }
 
@@ -464,29 +445,22 @@ h1 {
 }
 
 .development-copy h3 {
-  margin: 0 0 12px;
-  font-size: clamp(1.25rem, 3vw, 2rem);
+  margin: 0 0 7px;
+  font-size: .98rem;
   font-weight: 500;
-  letter-spacing: -.04em;
 }
 
 .development-copy p {
   max-width: 720px;
   margin: 0;
   color: var(--muted);
-  font-size: .88rem;
-  line-height: 1.55;
+  font-size: .75rem;
+  line-height: 1.45;
 }
 
 .development-action {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border: 1px solid var(--line);
-  background: var(--page);
-  border-radius: 50%;
-  font-size: 1.15rem;
+  margin-left: 20px;
+  font-size: 1rem;
 }
 
 .featured-project:hover,
@@ -784,15 +758,13 @@ body.dialog-open {
   }
 
   .development-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 24px 22px;
+    padding-inline: 22px;
   }
 
   .development-card {
     grid-template-columns: 28px minmax(0, 1fr) auto;
     gap: 10px;
-    padding: 24px 22px;
+    padding: 16px 22px;
   }
 
   .development-card:hover,

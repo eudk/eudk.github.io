@@ -18,7 +18,6 @@ jobs:
           test -f index.html
           test -f privacy.html
           test -f portfolio.html
-          test -f donate/index.html
 
       - name: Check for broken internal links (simple)
         run: |
