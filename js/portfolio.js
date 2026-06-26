@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const GITHUB_USER = 'eudk';
   const STARRED_LIMIT = 10;
+  const AUTO_REPO_LIMIT = 6;
+  const AUTO_REPO_ANCHOR = 'bytejoin-cli';
   const CACHE_KEY = 'eudkStarredReposV7';
+  const AUTO_REPO_CACHE_KEY = 'eudkNewReposAfterBytejoinV1';
   const CACHE_MAX_AGE = 60 * 60 * 1000;
   const REPO_CACHE_PREFIX = 'eudkRepoMetadataV2:';
+  const REPO_SUMMARY_CACHE_PREFIX = 'eudkRepoSummaryV1:';
 
   const projectRepos = {
     eugdatacore: [
@@ -11,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ],
     museum: [
       ['weird-ai-test-museum', 'Museets kildekode og indhold', 'Museum source code and content']
+    ],
+    bytejoin: [
+      ['bytejoin-cli', 'Projektets kildekode og dokumentation', 'Project source code and documentation']
     ],
     ev: [],
     naturdanmark: [
@@ -32,6 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     museum: [
       ['site', 'https://eudk.dev/weird-ai-test-museum/'],
       ['github', 'https://github.com/eudk/weird-ai-test-museum']
+    ],
+    bytejoin: [
+      ['github', 'https://github.com/eudk/bytejoin-cli']
     ]
   };
 
@@ -144,6 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
       repo_label: 'GitHub repository',
       security_project_label: 'IT-sikkerhedsprojekt',
       live_project_label: 'Live projekt',
+      cli_project_label: 'CLI projekt',
+      new_project_label: 'Nyt repository',
       ongoing_label: 'Under udvikling',
       under_development: 'Under udvikling',
       ev_short: 'Intelligent kort til ladestationer, ruteplanlægning og relevant information for elbiler.',
@@ -190,6 +202,11 @@ document.addEventListener('DOMContentLoaded', () => {
           description: 'Et uofficielt, visuelt museum og en field guide til mindeværdige AI-tests, mærkelige edge cases og forskningsbenchmarks. Samlingen dækker blandt andet billedgenerering, sprogtricks, spil, lyd, video og robusthed.',
           note: 'Projektet er lavet for nysgerrighed og dokumenterer øjebliksbilleder af AI-udviklingen.'
         },
+        bytejoin: {
+          title: 'bytejoin-cli',
+          description: 'Repository-beskrivelsen hentes fra GitHub.',
+          note: 'Nye offentlige repositories oprettet efter bytejoin-cli kan automatisk blive vist under dette projekt på siden.'
+        },
         ev: {
           title: 'EV Charging Intelligence Map (In Development)',
           description: 'Personligt projekt under udvikling med fokus på ladestationer, ruteplanlægning og anden relevant information for elbiler.',
@@ -216,6 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
       repo_label: 'GitHub repository',
       security_project_label: 'IT security project',
       live_project_label: 'Live project',
+      cli_project_label: 'CLI project',
+      new_project_label: 'New repository',
       ongoing_label: 'Work in progress',
       under_development: 'Under development',
       ev_short: 'An intelligent map for charging stations, route planning, and relevant electric vehicle information.',
@@ -262,6 +281,11 @@ document.addEventListener('DOMContentLoaded', () => {
           description: 'An unofficial visual museum and field guide to memorable AI tests, strange edge cases, and research benchmarks. The collection covers image generation, language tricks, games, audio, video, and robustness.',
           note: 'Made for curiosity, documenting snapshots of AI development rather than permanent verdicts.'
         },
+        bytejoin: {
+          title: 'bytejoin-cli',
+          description: 'The repository description is loaded from GitHub.',
+          note: 'New public repositories created after bytejoin-cli can automatically appear below this project on the page.'
+        },
         ev: {
           title: 'EV Charging Intelligence Map (In Development)',
           description: 'A personal project in development focused on charging stations, route planning, and other relevant information for electric vehicles.',
@@ -291,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const repoHeading = document.querySelector('.repo-heading');
   const closeButton = dialog.querySelector('.dialog-close');
   const starredProjects = document.getElementById('starred-projects');
+  const autoProjectList = document.getElementById('auto-projects');
   const starredCount = document.getElementById('starred-count');
   const selectedCount = document.getElementById('selected-count');
   const developmentCount = document.getElementById('development-count');
@@ -299,9 +324,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeRepo = null;
   let lastTrigger = null;
   let starredRepos = fallbackRepos;
+  let autoRepos = [];
 
   function updateProjectCounts() {
-    const selectedProjects = document.querySelectorAll('.project-list [data-project]');
+    const selectedProjects = document.querySelectorAll('.project-list [data-project], .project-list [data-auto-repo-index]');
     const developmentProjects = document.querySelectorAll('.development-card[data-project]');
 
     selectedCount.textContent = String(selectedProjects.length).padStart(2, '0');
@@ -377,6 +403,45 @@ document.addEventListener('DOMContentLoaded', () => {
       return cached.metadata;
     } catch {
       return null;
+    }
+  }
+
+  function readRepoSummaryCache(name) {
+    try {
+      const cached = JSON.parse(localStorage.getItem(`${REPO_SUMMARY_CACHE_PREFIX}${name}`));
+      if (!cached || Date.now() - cached.savedAt > CACHE_MAX_AGE || !cached.repo) return null;
+      return isSafeRepo(cached.repo) ? cached.repo : null;
+    } catch {
+      return null;
+    }
+  }
+
+  async function fetchRepoSummary(name) {
+    const cached = readRepoSummaryCache(name);
+    if (cached) return cached;
+
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 5000);
+
+    try {
+      const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${encodeURIComponent(name)}`, {
+        headers: { Accept: 'application/vnd.github+json' },
+        credentials: 'omit',
+        referrerPolicy: 'no-referrer',
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error('Repository request failed');
+
+      const data = await response.json();
+      if (!isSafeRepo(data)) throw new Error('Unexpected GitHub response');
+      const repo = sanitizeRepo(data);
+      localStorage.setItem(
+        `${REPO_SUMMARY_CACHE_PREFIX}${name}`,
+        JSON.stringify({ savedAt: Date.now(), repo })
+      );
+      return repo;
+    } finally {
+      window.clearTimeout(timeoutId);
     }
   }
 
@@ -576,6 +641,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function getManualRepoNames() {
+    return new Set(
+      Object.values(projectRepos)
+        .flat()
+        .map(([name]) => name.toLowerCase())
+    );
+  }
+
+  function renderAutoProjects() {
+    autoProjectList.replaceChildren();
+    autoProjectList.hidden = autoRepos.length === 0;
+
+    autoRepos.forEach((repo, index) => {
+      const button = document.createElement('button');
+      button.className = 'project-row auto-project-row';
+      button.type = 'button';
+      button.dataset.autoRepoIndex = String(index);
+
+      const content = document.createElement('span');
+      content.appendChild(createTextElement('strong', '', repo.name));
+      content.appendChild(createTextElement(
+        'small',
+        '',
+        repo.description || translations[currentLang].new_project_label
+      ));
+
+      button.appendChild(content);
+      button.appendChild(createTextElement('span', 'arrow', '+'));
+      autoProjectList.appendChild(button);
+    });
+
+    updateProjectCounts();
+  }
+
   function readCachedRepos() {
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
@@ -584,6 +683,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const validRepos = cached.repos.filter(isSafeRepo);
       return validRepos.length ? validRepos.slice(0, STARRED_LIMIT) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function readCachedAutoRepos() {
+    try {
+      const cached = JSON.parse(localStorage.getItem(AUTO_REPO_CACHE_KEY));
+      if (!cached || Date.now() - cached.savedAt > CACHE_MAX_AGE || !Array.isArray(cached.repos)) {
+        return null;
+      }
+      const validRepos = cached.repos.filter(isSafeRepo);
+      return validRepos.length ? validRepos.slice(0, AUTO_REPO_LIMIT) : [];
     } catch {
       return null;
     }
@@ -629,6 +741,54 @@ document.addEventListener('DOMContentLoaded', () => {
     } finally {
       window.clearTimeout(timeoutId);
       renderStarredProjects();
+    }
+  }
+
+  async function loadAutomaticProjects() {
+    const cachedRepos = readCachedAutoRepos();
+    if (cachedRepos) {
+      autoRepos = cachedRepos;
+      renderAutoProjects();
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 5000);
+
+    try {
+      const response = await fetch(
+        `https://api.github.com/users/${GITHUB_USER}/repos?sort=created&direction=desc&per_page=100`,
+        {
+          headers: { Accept: 'application/vnd.github+json' },
+          credentials: 'omit',
+          referrerPolicy: 'no-referrer',
+          signal: controller.signal
+        }
+      );
+      if (!response.ok) throw new Error('GitHub request failed');
+
+      const data = await response.json();
+      if (!Array.isArray(data)) throw new Error('Unexpected GitHub response');
+
+      const repos = data.filter(isSafeRepo);
+      const anchorRepo = repos.find((repo) => repo.name.toLowerCase() === AUTO_REPO_ANCHOR);
+      const anchorCreatedAt = anchorRepo?.created_at ? Date.parse(anchorRepo.created_at) : 0;
+      const manualRepoNames = getManualRepoNames();
+
+      autoRepos = repos
+        .filter((repo) => !repo.fork && !repo.archived)
+        .filter((repo) => !manualRepoNames.has(repo.name.toLowerCase()))
+        .filter((repo) => !anchorCreatedAt || Date.parse(repo.created_at || '') > anchorCreatedAt)
+        .sort((a, b) => Date.parse(b.created_at || '') - Date.parse(a.created_at || ''))
+        .slice(0, AUTO_REPO_LIMIT)
+        .map(sanitizeRepo);
+
+      localStorage.setItem(AUTO_REPO_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), repos: autoRepos }));
+    } catch {
+      autoRepos = [];
+    } finally {
+      window.clearTimeout(timeoutId);
+      renderAutoProjects();
     }
   }
 
@@ -715,6 +875,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     renderStarredProjects();
+    renderAutoProjects();
     if (activeProject) fillDialog(activeProject);
     if (activeRepo) fillRepoDialog(activeRepo);
   }
@@ -727,6 +888,20 @@ document.addEventListener('DOMContentLoaded', () => {
     dialogNote.textContent = project.note;
     renderDialogActions(projectActions[projectId] || []);
     renderDialogRepositories(projectId);
+
+    if (projectId === 'bytejoin' && repos[0]) {
+      fetchRepoSummary(repos[0][0])
+        .then((repo) => {
+          if (activeProject === projectId) {
+            dialogDescription.textContent = repo.description || translations[currentLang].no_description;
+          }
+        })
+        .catch(() => {
+          if (activeProject === projectId) {
+            dialogDescription.textContent = translations[currentLang].no_description;
+          }
+        });
+    }
 
     if (repos.length === 0) {
       dialogMetadata.replaceChildren(
@@ -815,6 +990,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (repo) openRepoDialog(repo, button);
   });
 
+  autoProjectList.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-auto-repo-index]');
+    if (!button || !autoProjectList.contains(button)) return;
+    const repo = autoRepos[Number(button.dataset.autoRepoIndex)];
+    if (repo) openRepoDialog(repo, button);
+  });
+
   closeButton.addEventListener('click', closeDialog);
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) closeDialog();
@@ -872,4 +1054,5 @@ document.addEventListener('DOMContentLoaded', () => {
   updateProjectCounts();
   applyLanguage(currentLang);
   loadStarredProjects();
+  loadAutomaticProjects();
 });
