@@ -1,155 +1,74 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Evgeniy Gordienko | IT Security Portfolio</title>
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
-
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png">
-
+  <title>Evgeniy Gordienko</title>
+  <meta name="description" content="Evgeniy Gordienko — developer with a background in computer science and IT security.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self' https://gc.zgo.at;
-    style-src 'self' https://cdnjs.cloudflare.com;
-    img-src 'self' data:;
-    font-src https://cdnjs.cloudflare.com;
-    connect-src 'self' https://eudk.goatcounter.com https://gc.zgo.at;
-    form-action https://formspree.io;
-    frame-ancestors 'none';
-    base-uri 'self';
-    object-src 'none';
-    upgrade-insecure-requests;
-  ">
-
-  <meta name="description" content="Portfolio for Evgeniy, an IT Security student specializing in GRC">
-
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="css/style.css">
-
-  <!-- GoatCounter (cookie-less analytics) -->
-  <script data-goatcounter="https://eudk.goatcounter.com/count"
-          async src="https://gc.zgo.at/count.js"></script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; form-action https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
 </head>
-
 <body>
-  <canvas id="matrix-canvas"></canvas>
-
-  <!-- Profile image + “eyes” overlay (desktop only via CSS/JS) -->
-  <div class="profile-wrap" id="profile-wrap" aria-label="Profile image">
-    <img src="assets/img/img.png" alt="eudk" class="profile-img" id="profile-img">
-    <span class="profile-eyes" aria-hidden="true"></span>
+  <div class="background" aria-hidden="true"></div>
+  <div class="ambient-terminal" aria-hidden="true">
+    <pre class="terminal-ghost terminal-ghost--left">$ locale
+LANG=da_DK.UTF-8
+LANGUAGE=da:en</pre>
+    <pre class="terminal-ghost terminal-ghost--right">$ ls
+index.html  style.css</pre>
   </div>
 
-  <main class="content">
-    <h1>Evgeniy Gordienko</h1>
+  <main class="hero" aria-labelledby="site-title">
+    <h1 id="site-title"><span class="first-name" data-alternate-name="Eugene"><span class="first-name-current">Evgeniy</span></span> Gordienko</h1>
 
-    <p id="bio-text">
-      <span id="typewriter-text"></span><span id="typewriter-cursor">&nbsp;</span>
-    </p>
-
-    <div class="action-buttons">
-      <a href="https://github.com/eudk" target="_blank" rel="noopener noreferrer" data-i18n="btn_github">
-        <i class="fab fa-github"></i> GitHub
+    <nav class="links" aria-label="Primary links">
+      <a href="https://github.com/eudk" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="projects-easter-egg" href="https://github.com/stars/eudk/lists/projects-26" target="_blank" rel="noopener noreferrer" aria-label="Projects">
+        <span class="project-slashes" aria-hidden="true">//</span>
+        <span class="projects-label" aria-hidden="true">Projects</span>
       </a>
-
-      <a href="https://linkedin.com/in/eudk" target="_blank" rel="noopener noreferrer" data-i18n="btn_linkedin">
-        <i class="fab fa-linkedin"></i> LinkedIn
-      </a>
-
-      <a href="portfolio.html" id="projects-link" data-i18n="btn_projects">
-        <i class="fas fa-briefcase"></i> Projekter
-      </a>
-
-      <button id="open-contact-modal" type="button" data-i18n="btn_contact">
-        <i class="fas fa-envelope"></i> Kontakt
-      </button>
-    </div>
+      <a href="https://linkedin.com/in/eudk" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <span class="nav-separator" aria-hidden="true">//</span>
+      <button id="open-contact" type="button">Contact</button>
+    </nav>
   </main>
 
-  <!-- Language toggle -->
-  <div class="lang-toggle" aria-label="Language selector">
-    <span class="lang-label" aria-hidden="true">DK</span>
+  <section class="contact-overlay" id="contact-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-title" aria-hidden="true">
+    <div class="contact-panel">
+      <button class="close" id="close-contact" type="button" aria-label="Close contact form">&times;</button>
 
-    <div class="lang-switch" aria-label="Toggle language DK/ENG">
-      <input id="check" type="checkbox" />
-      <label class="switch" for="check" title="Language">
-        <svg viewBox="0 0 212.4992 84.4688" overflow="visible" aria-hidden="true" focusable="false">
-          <path
-            pathLength="360"
-            fill="none"
-            stroke="currentColor"
-            d="M 42.2496,84.4688 C 18.913594,84.474104 -0.00530424,65.555206 0,42.2192 0.01148477,18.895066 18.925464,-0.00530377 42.2496,0 65.573736,-0.00530377 84.487715,18.895066 84.4992,42.2192 84.504504,65.555206 65.585606,84.474104 42.2496,84.4688 18.913594,84.474104 -0.00530424,65.555206 0,42.2192 0.01148477,18.895066 18.925463,-0.00188652 42.2496,0 c 64,0 64,84.4688 128,84.4688 23.32414,0.0019 42.23812,-18.895066 42.2496,-42.2192 C 212.5042,18.913594 193.58561,-0.005304 170.2496,0 146.91359,-0.005304 127.9947,18.913594 128,42.2496 c 0.0115,23.324134 18.92546,42.224504 42.2496,42.2192 23.32414,0.0053 42.23812,-18.895066 42.2496,-42.2192 C 212.5042,18.913594 193.58561,-0.005304 170.2496,0 c -64,0 -64,84.4688 -128,84.4688 z"
-          ></path>
-        </svg>
-      </label>
-    </div>
-
-    <span class="lang-label" aria-hidden="true">ENG</span>
-  </div>
-
-  <!-- Contact modal -->
-  <div class="modal-overlay" id="contact-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
-    <div class="modal-content">
-      <span class="close-btn" id="close-contact-modal" aria-label="Close">&times;</span>
-
-      <form id="contact-form" class="contact-form" action="https://formspree.io/f/xqayznjr" method="POST">
-        
-        <h2 id="contact-modal-title" data-i18n="modal_title">Kontakt</h2>
-
-        <p class="modal-subtitle">
-          <span data-i18n="modal_subtitle_prefix">Skriv her eller via</span>
-          <a href="https://linkedin.com/in/eudk" target="_blank" rel="noopener noreferrer">LinkedIn</a><span data-i18n="modal_subtitle_suffix"> for at kontakte mig.</span>
+      <form id="contact-form" action="https://formspree.io/f/xqayznjr" method="POST">
+        <h2 id="contact-title">Contact</h2>
+        <p class="contact-copy">
+          Send a note here or reach me on
+          <a href="https://linkedin.com/in/eudk" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
         </p>
 
-        <div class="form-group">
-          <label for="email" data-i18n="label_email">Din e-mail</label>
-          <input type="email" id="email" name="email" required data-i18n-placeholder="ph_email" placeholder="navn@eksempel.dk">
-        </div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
 
-        <div class="form-group">
-          <label for="message" data-i18n="label_message">Besked</label>
-          <textarea id="message" name="message" required data-i18n-placeholder="ph_message" placeholder="Skriv din besked..."></textarea>
-        </div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
 
-        <div class="form-group-consent">
-          <input type="checkbox" id="consent" name="consent" required>
-          <label for="consent">
-            <span data-i18n="consent_prefix">Jeg accepterer, at mine data håndteres som beskrevet i</span>
-            <a href="./privacy.html" target="_blank" rel="noopener noreferrer" data-i18n="privacy_notice">Privatlivspolitikken</a><span data-i18n="consent_suffix">.</span>
-          </label>
-        </div>
+        <label class="consent" for="consent">
+          <input id="consent" name="consent" type="checkbox" required>
+          <span>I consent to my data being handled as described in the <a href="privacy.html" target="_blank" rel="noopener noreferrer">privacy notice</a>.</span>
+        </label>
 
-        <button type="submit" data-i18n="btn_send">Send</button>
+        <button class="send" id="send-button" type="submit" disabled>Send</button>
       </form>
     </div>
-  </div>
+  </section>
 
   <footer>
     <small>
-      &copy; <span id="year"></span> 
-      <a href="https://github.com/eudk/eudk.github.io/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Evgeniy Gordienko</a>🦞 
-    <span class="online-indicator"></span>
-      <span> | </span>
-      <a href="privacy.html" data-i18n="footer_privacy">Privatliv</a>
-      <span> | </span>
-      <a class="footer-status"
-         href="https://status.eudk.dev/"
-         target="_blank" rel="noopener noreferrer"
-         data-i18n="footer_status">
-        <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Status
-      </a>
+      &copy; <a id="year" href="https://github.com/eudk/eudk.github.io/blob/HEAD/LICENSE" target="_blank" rel="noopener noreferrer" aria-label="License">2026</a>
+      <span aria-hidden="true">//</span>
+      <a href="privacy.html">Privacy</a>
     </small>
   </footer>
-
-  <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -3,84 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Notice</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
-
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png">
-
+  <title>Privacy | Evgeniy Gordienko</title>
+  <meta name="description" content="A short privacy note for this site.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2">
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 720px;
-      margin: 40px auto;
-      padding: 0 20px;
+    * {
+      box-sizing: border-box;
     }
-    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    h2 { margin-top: 1.6rem; }
-    p { margin-bottom: 1rem; }
-    a { color: #007aff; }
-    code { background: #f3f3f5; padding: 2px 6px; border-radius: 6px; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      color: rgba(255, 255, 255, 0.92);
+      background: #090a0c;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      width: min(520px, 100%);
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    .back {
+      margin-top: 26px;
+      font-size: 0.78rem;
+    }
   </style>
 </head>
 <body>
-  <h1>Privacy Notice</h1>
-  <p>This notice explains the limited data processing used by this portfolio.</p>
-
-  <h2>Who I Am</h2>
-  <p>My name is Evgeniy Gordienko. This is my personal portfolio website.</p>
-
-  <h2>Cookies</h2>
-  <p>
-    The portfolio itself does <strong>not</strong> set cookies and does not use advertising or cookie-based tracking.
-  </p>
-
-  <h2>Analytics (GoatCounter)</h2>
-  <p>
-    The front page uses <strong>GoatCounter</strong> for basic traffic statistics such as page views and referrers.
-    GoatCounter does not place cookies or tracking identifiers in your browser. Requests may include technical information
-    such as the page URL, referrer, IP address, browser, system, language, and screen width. GoatCounter processes this
-    information to produce aggregated statistics and detect repeat visits without storing IP addresses or full user-agent strings.
-  </p>
-  <p>
-    See the <a href="https://www.goatcounter.com/privacy" target="_blank" rel="noopener noreferrer">GoatCounter privacy policy</a>.
-  </p>
-
-  <h2>Browser Storage</h2>
-  <p>
-    The site uses your browser's <code>localStorage</code> to remember your Danish or English language preference.
-    The projects page also temporarily caches public GitHub repository information to reduce repeated API requests.
-    This data stays in your browser and can be removed by clearing the site's browser storage.
-  </p>
-
-  <h2>Project Information (GitHub)</h2>
-  <p>
-    The projects page requests public repository information from the GitHub API. When this happens, GitHub receives
-    standard connection information such as your IP address and browser details. No GitHub login is required.
-    See the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
-    target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>.
-  </p>
-
-  <h2>Contact Form (Formspree)</h2>
-  <p>
-    If you submit the contact form, your email address and message are sent to <strong>Formspree</strong>, which processes
-    and forwards the submission to me. Formspree may also process standard request information such as your IP address,
-    browser type, access time, and referrer for operating and securing its service.
-    See the <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Formspree Privacy Policy</a>.
-  </p>
-
-  <h2>Your Rights</h2>
-  <p>
-    I do not use your personal data for marketing and I do not sell it to third parties.
-    You can request deletion of your contact form message by contacting me.
-  </p>
-
-  <br>
-  <a href="index.html">← Back to main site</a>
+  <main>
+    <h1>Privacy</h1>
+    <p>This site does not use analytics, advertising trackers, fingerprinting, or cookies.</p>
+    <p>If you use the contact form, your email address and message are sent to Formspree for delivery. Do not include sensitive information.</p>
+    <p>The hosting provider may process standard request logs needed to serve and protect the site.</p>
+    <p class="back"><a href="index.html">Back</a></p>
+  </main>
 </body>
 </html>
